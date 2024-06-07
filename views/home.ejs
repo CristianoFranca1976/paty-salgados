@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="/assets/LetraC.png" type="image/x-icon">
+
+    <title>Salgados</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="addBasket">
+
+      </div>
+      
+     
+      <div id="basket">
+        <button type="button" class="basket">
+          <img src="/assets/basket.png" alt="basket" class="basketLogo" />
+        </button>
+      </div>
+      <header>
+        <img src="/assets/logo.jpeg" alt="" id="logo" />
+        <h1>Paty Salgados</h1>
+      </header>
+      
+      <section>
+        
+      </section>
+      
+      <form
+        action="https://formsubmit.co/49f120962618ac269b0179357f2a2502"
+        method="post"
+        class="form-email"
+      >
+        <div id="assunto">
+          <label for="assunto">Assunto:</label>
+          <select name="assunto" title="Assunto">
+            <option value="Suporte">Suporte</option>
+            <option value="Sugestões">Sugestões</option>
+            <option value="Reclamação">Reclamação</option>
+            <option value="Dúvidas">Dúvidas</option>
+          </select>
+        </div>
+        <div id="nomecompleto">
+          <label for="NomeCompleto">Nome Completo:</label>
+          <input type="text" name="nome" placeholder="Seu nome aqui" />
+        </div>
+        <div id="Email">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Seu e-mail aqui"
+            id="email"
+            required=""
+          />
+        </div>
+        <br />
+        <div id="Mensagem">
+          <label for="mensagem">Mensagem:</label>
+          <br />
+          <textarea
+            name="mensagem"
+            id="mensagem"
+            cols="40"
+            rows="10"
+            placeholder="Sua mensagem aqui"
+            required=""
+          ></textarea>
+        </div>
+        <button type="submit" class="basket" title="send" >
+          <img src="/assets/paper-plane.png" alt="" class="logoNav">
+        </button>
+      </form>
+
+      <footer>
+        <div class="autor">
+          <img src="/assets/LetraC.png" alt="letter C" class="logoNav" />
+          <p>Cristiano Developer</p>
+        </div>
+        <nav>
+          <a href="#" title="email">
+            <img src="/assets/email.png" alt="" class="logoNav" />
+          </a>
+          <a href="#" title="instragam">
+            <img src="/assets/instagram.png" alt="" class="logoNav" />
+          </a>
+        </nav>
+      </footer>
+      <div class="basket-salvo">
+        <h3 class="ordem" id="od">Ordems</h3>
+        <div class="listas">
+          
+        </div>
+        <div class='item'>
+          <p id="total- pagar">Total: </p>
+          </div>
+        <div id="btns">
+          <button type="button" class="btn-adicionar" id="btn-voltarOrder" >Voltar</button>
+            <a href="/email" class="btn-adicionar">Enviar</a>
+          </div>
+    </div>
+    <script src="/js/index.js"></script>
+  </body>
+</html>
