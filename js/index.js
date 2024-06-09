@@ -70,7 +70,7 @@ const sectionSalgados = `
   />
   <div class="info">
     <div class="nome">
-      <h2>Bolinho de Queijo</h2>
+      <h2>Bolinha de Queijo</h2>
       <button type="button" class="basket" onclick="openPedido('Bolinho de Queijo', '/assets/bolinho-de-queijo.jpg')">
         <img
           src="/assets/basket.png"
@@ -211,24 +211,20 @@ document.body.children[0].firstElementChild.innerHTML = selecionarSalgado;
 document.addEventListener("DOMContentLoaded", (event) => {
   const inputTexto = document.querySelector("#quantidade");
   const outputTexto = document.getElementById("total-pay");
-  
- 
 
   inputTexto.addEventListener("input", function () {
     const tamanhoText = tamanho.options[tamanho.selectedIndex].textContent;
-  const pequeno = 0.6;
-  const medio = 3.5;
-  const grande = 5.0;
- 
-     if (tamanhoText === 'Pequeno') { 
-    return outputTexto.textContent = "£ " + inputTexto.value * pequeno;
-     } else if (tamanhoText === 'Medio') {
-      return outputTexto.textContent = "£ " + inputTexto.value * medio;
-     } else if (tamanhoText === 'Grande') {
-      return outputTexto.textContent = "£ " + inputTexto.value * grande;
-  }
+    const pequeno = 0.6;
+    const medio = 3.5;
+    const grande = 5.0;
 
-    
+    if (tamanhoText === "Pequeno") {
+      return (outputTexto.textContent = "£ " + inputTexto.value * pequeno);
+    } else if (tamanhoText === "Medio") {
+      return (outputTexto.textContent = "£ " + inputTexto.value * medio);
+    } else if (tamanhoText === "Grande") {
+      return (outputTexto.textContent = "£ " + inputTexto.value * grande);
+    }
   });
 });
 
@@ -275,8 +271,6 @@ btnVolta.addEventListener("click", () => {
   console.log("Clicked");
 });
 
-const optionV = option.value;
-
 btnAdicionar.addEventListener("click", (id) => {
   const tipo = document.getElementById("tipo");
   const tamanho = document.getElementById("tamanho");
@@ -292,8 +286,6 @@ btnAdicionar.addEventListener("click", (id) => {
     const pequeno = 0.6;
     const medio = 3.5;
     const grande = 5.0;
-
-    //var newPequeno = pequeno.toFixed(2);
 
     if (tamanhoText === "Pequeno") {
       var somaPequeno = quantidade * pequeno;
@@ -327,9 +319,7 @@ btnAdicionar.addEventListener("click", (id) => {
      <button  onclick='deleteItem(${count})' type="button" class="delete" id='deleteId_${count}' disabled> <img  id='bin_${count}' src="/assets/recycle-bin.png" style="height: 20px;width: 20px;" alt="">Delete</button>
     </div>
    </div>
-   `
-    ;
-
+   `;
   if (
     tipoText !== "" &&
     tipoText !== null &&
@@ -351,7 +341,6 @@ btnAdicionar.addEventListener("click", (id) => {
     bascket.style.display = "none";
     addBasket.style.display = "none";
     basketSalvo.style.display = "flex";
-
     lista.innerHTML += newItem;
   } else {
     alert("Por favor, preencha os campos vazios");
@@ -367,6 +356,69 @@ btnVoltarOrder.addEventListener("click", () => {
   header.style.display = "flex";
   footer.style.display = "flex";
   formEmail.style.display = "flex";
+});
+
+function invoice() {
+  const invoice = `
+   <div id="top">
+      <img src="/assets/LetraC.png" alt="" id="logo">
+      <h2>Invoice</h2>
+      </div>
+ <div class="table_component" role="region" tabindex="0">
+        <table>
+            <caption>Paty Salgados</caption>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Descricao</th>
+                    <th>Preco</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    
+                    <td colspan="2">Total</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+`;
+
+  const invoiceLocation = document.getElementById("invoice");
+
+  invoiceLocation.innerHTML = invoice;
+
+  console.log();
+}
+
+const enviar = document.getElementById("enviar");
+
+enviar.addEventListener("click", () => {
+  const contactForm = document.getElementById("contactForm");
+
+  section.style.display = "none";
+  header.style.display = "none";
+  footer.style.display = "none";
+  formEmail.style.display = "none";
+  bascket.style.display = "none";
+  basketSalvo.style.display = "none";
+  contactForm.style.display = "flex";
 });
 
 function checkedTask(id) {

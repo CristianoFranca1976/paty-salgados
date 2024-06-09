@@ -11,7 +11,8 @@
     "express",
     "nodemailer",
     "dotenv",
-    "ejs"
+    "ejs",
+    "nodemon"
   ],
   "author": "Cristiano Franca",
   "license": "ISC",
