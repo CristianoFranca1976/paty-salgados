@@ -419,6 +419,58 @@ enviar.addEventListener("click", () => {
   bascket.style.display = "none";
   basketSalvo.style.display = "none";
   contactForm.style.display = "flex";
+
+  function invoice() {
+
+    const invoice = `
+     <div id="top">
+        <img src="/assets/LetraC.png" alt="" id="logo">
+        <h2>Invoice</h2>
+        </div>
+   <div class="table_component" role="region" tabindex="0">
+          <table>
+              <caption>Paty Salgados</caption>
+              <thead>
+                  <tr>
+                      <th>Item</th>
+                      <th>Descricao</th>
+                      <th>Preco</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      
+                      <td colspan="2">Total</td>
+                      <td></td>
+                  </tr>
+              </tbody>
+          </table>
+          </div>
+  `;
+  
+    const invoiceLocation = document.getElementById('invoice');
+  
+    invoiceLocation.innerHTML = invoice
+  
+    
+  
+  };
+  invoice()
 });
 
 function checkedTask(id) {
