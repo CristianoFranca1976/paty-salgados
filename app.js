@@ -12,6 +12,7 @@ app.use('/css', express.static(path.join(__dirname, 'css')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/js', express.static(path.join(__dirname, 'js')));
 
+
 app.use(express.static('public')); 
 
 app.get('/', (req, res) => { 
