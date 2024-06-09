@@ -1,11 +1,8 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/"},
-    {"routes":[
+    "routes":[
       {
         "'src": "/",
         "dest": "/"
       }
-    ]}
-  ]
+    ]
 }
