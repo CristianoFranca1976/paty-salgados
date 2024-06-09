@@ -12,7 +12,7 @@ const selecionarSalgado = `
               <option value="frito">Frito</option>
               <option value="congelado">Congelado</option>
             </select>
-              <label for="">Tamnaho: </label>
+              <label for="">Tamanho: </label>
               <select name="tamanho" id="tamanho" title="select o tamanho" required>
                 <option value="tamanho"></option>
                 <option value="pequeno">Pequeno</option>
@@ -358,14 +358,17 @@ btnVoltarOrder.addEventListener("click", () => {
   formEmail.style.display = "flex";
 });
 
+
+
 function invoice() {
+  
   const invoice = `
    <div id="top">
       <img src="/assets/LetraC.png" alt="" id="logo">
       <h2>Invoice</h2>
       </div>
  <div class="table_component" role="region" tabindex="0">
-        <table>
+        <table id="myTable">
             <caption>Paty Salgados</caption>
             <thead>
                 <tr>
@@ -376,22 +379,6 @@ function invoice() {
             </thead>
             <tbody>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    
                     <td colspan="2">Total</td>
                     <td></td>
                 </tr>
@@ -401,6 +388,8 @@ function invoice() {
 `;
 
   const invoiceLocation = document.getElementById("invoice");
+
+  
 
   invoiceLocation.innerHTML = invoice;
 
@@ -420,6 +409,7 @@ enviar.addEventListener("click", () => {
   basketSalvo.style.display = "none";
   contactForm.style.display = "flex";
 
+
   function invoice() {
 
     const invoice = `
@@ -428,7 +418,7 @@ enviar.addEventListener("click", () => {
         <h2>Invoice</h2>
         </div>
    <div class="table_component" role="region" tabindex="0">
-          <table>
+          <table id='myTable'>
               <caption>Paty Salgados</caption>
               <thead>
                   <tr>
@@ -437,24 +427,9 @@ enviar.addEventListener("click", () => {
                       <th>Preco</th>
                   </tr>
               </thead>
+              
               <tbody>
                   <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-                  <tr>
-                      
                       <td colspan="2">Total</td>
                       <td></td>
                   </tr>
@@ -462,15 +437,12 @@ enviar.addEventListener("click", () => {
           </table>
           </div>
   `;
-  
-    const invoiceLocation = document.getElementById('invoice');
-  
-    invoiceLocation.innerHTML = invoice
-  
-    
-  
-  };
-  invoice()
+
+    const invoiceLocation = document.getElementById("invoice");
+
+    invoiceLocation.innerHTML = invoice;
+  }
+  invoice();
 });
 
 function checkedTask(id) {
