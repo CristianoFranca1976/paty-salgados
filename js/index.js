@@ -268,7 +268,6 @@ btnVolta.addEventListener("click", () => {
   header.style.display = "flex";
   footer.style.display = "flex";
   formEmail.style.display = "flex";
-  console.log("Clicked");
 });
 
 btnAdicionar.addEventListener("click", (id) => {
@@ -350,97 +349,75 @@ btnAdicionar.addEventListener("click", (id) => {
 const btnVoltarOrder = document.getElementById("btn-voltarOrder");
 
 btnVoltarOrder.addEventListener("click", () => {
+  const contactForm = document.getElementById("contactForm");
+
   addBasket.style.display = "none";
   basketSalvo.style.display = "none";
   section.style.display = "block";
   header.style.display = "flex";
   footer.style.display = "flex";
   formEmail.style.display = "flex";
+  contactForm.style.display = "none";
 });
-
-
-
-function invoice() {
-  
-  const invoice = `
-   <div id="top">
-      <img src="/assets/LetraC.png" alt="" id="logo">
-      <h2>Invoice</h2>
-      </div>
- <div class="table_component" role="region" tabindex="0">
-        <table id="myTable">
-            <caption>Paty Salgados</caption>
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Descricao</th>
-                    <th>Preco</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="2">Total</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-`;
-
-  const invoiceLocation = document.getElementById("invoice");
-
-  
-
-  invoiceLocation.innerHTML = invoice;
-
-  console.log();
-}
 
 const enviar = document.getElementById("enviar");
 
 enviar.addEventListener("click", () => {
   const contactForm = document.getElementById("contactForm");
 
+  const tipo = document.getElementById("tipo");
+  const tamanho = document.getElementById("tamanho");
+  const quantidade = document.getElementById("quantidade").value;
+  const sim = document.getElementById("sim");
+
+  const tipoText = tipo.options[tipo.selectedIndex].textContent;
+  const tamanhoText = tamanho.options[tamanho.selectedIndex].textContent;
+  const simText = sim.options[sim.selectedIndex].textContent;
+  const h2Value = h2.textContent;
+
+  const somaQuantidade = function () {
+    const pequeno = 0.6;
+    const medio = 3.5;
+    const grande = 5.0;
+
+    if (tamanhoText === "Pequeno") {
+      var somaPequeno = quantidade * pequeno;
+      return somaPequeno.toFixed(2);
+    } else if (tamanhoText === "Medio") {
+      var somaMedio = quantidade * medio;
+      return somaMedio.toFixed(2);
+    } else if (tamanhoText === "Grande") {
+      var somaGrande = quantidade * grande;
+      return somaGrande.toFixed(2);
+    }
+  };
+  let count = 0;
+  const newOder = somaQuantidade();
+  ++count;
+
   section.style.display = "none";
   header.style.display = "none";
   footer.style.display = "none";
   formEmail.style.display = "none";
   bascket.style.display = "none";
-  basketSalvo.style.display = "none";
+  basketSalvo.style.display = "none"; // teste voltar pra nose depois
   contactForm.style.display = "flex";
 
-
   function invoice() {
-
     const invoice = `
-     <div id="top">
-        <img src="/assets/LetraC.png" alt="" id="logo">
-        <h2>Invoice</h2>
-        </div>
-   <div class="table_component" role="region" tabindex="0">
-          <table id='myTable'>
-              <caption>Paty Salgados</caption>
-              <thead>
-                  <tr>
-                      <th>Item</th>
-                      <th>Descricao</th>
-                      <th>Preco</th>
-                  </tr>
-              </thead>
-              
-              <tbody>
-                  <tr>
-                      <td colspan="2">Total</td>
-                      <td></td>
-                  </tr>
-              </tbody>
-          </table>
-          </div>
+ <tr id='${count}'>
+      <td>${h2Value}</td>
+      <td>${tipoText}/${tamanhoText}/${quantidade}/${simText}</td>
+      <td>£ ${newOder}</td>
+  </tr>
+  
   `;
 
     const invoiceLocation = document.getElementById("invoice");
-
-    invoiceLocation.innerHTML = invoice;
+    const tbody = document.getElementById("tbody");
+    tbody.innerHTML += invoice;
+    
+    //tbody.innerHTML += invoice;
   }
   invoice();
 });
