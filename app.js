@@ -40,8 +40,8 @@ app.post('/send-email', async (req, res) => {
   let clientMailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'Obrigado pelo seu contato',
-      text: `Olá ${name},\n\nObrigado por entrar em contato conosco. Em breve retornaremos o seu contato.\n\nAtenciosamente,\nEquipe`
+      subject: 'Ordem enviada',
+      text: `Olá ${name},\n\nObrigado por escolher nossos salgados. Em breve retornaremos o seu contato.\n\nAtenciosamente,\nPatricia`
   };
 
   // Opções de e-mail para você
@@ -49,7 +49,7 @@ app.post('/send-email', async (req, res) => {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER, // Ou outro endereço de e-mail
       subject: 'Novo feedback/contato recebido',
-      text: `Você recebeu um novo feedback/contato.\n\nNome: ${name}\nEmail: ${email}\n\nPor favor, verifique e responda adequadamente.`
+      text: `Você recebeu um novo pedido.\n\nNome: ${name}\nEmail: ${email}\n\nPor favor, verifique e responda adequadamente.`
   };
 
   try {
