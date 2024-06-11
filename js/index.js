@@ -280,6 +280,8 @@ btnAdicionar.addEventListener("click", (id) => {
   const tamanhoText = tamanho.options[tamanho.selectedIndex].textContent;
   const simText = sim.options[sim.selectedIndex].textContent;
   const h2Value = h2.textContent;
+  const firtletterTipoText = tipoText.charAt();
+  const firstletterTamanhoText = tamanhoText.charAt();
 
   const somaQuantidade = function () {
     const pequeno = 0.6;
@@ -319,6 +321,16 @@ btnAdicionar.addEventListener("click", (id) => {
     </div>
    </div>
    `;
+  
+    const invoice = `
+ <tr id='${count}'>
+      <td>${h2Value}</td>
+      <td>${firtletterTipoText}/${firstletterTamanhoText}/${quantidade}/${simText}</td>
+      <td>£ ${newOder}</td>
+  </tr>
+  
+  `;
+   
   if (
     tipoText !== "" &&
     tipoText !== null &&
@@ -333,6 +345,7 @@ btnAdicionar.addEventListener("click", (id) => {
     simText !== null &&
     simText !== undefined
   ) {
+    const tbody = document.getElementById("tbody");
     section.style.display = "none";
     header.style.display = "none";
     footer.style.display = "none";
@@ -341,16 +354,18 @@ btnAdicionar.addEventListener("click", (id) => {
     addBasket.style.display = "none";
     basketSalvo.style.display = "flex";
     lista.innerHTML += newItem;
+    tbody.innerHTML += invoice;
+    
   } else {
     alert("Por favor, preencha os campos vazios");
   }
+  
 });
 
 const btnVoltarOrder = document.getElementById("btn-voltarOrder");
+const contactForm = document.getElementById("contactForm");
 
 btnVoltarOrder.addEventListener("click", () => {
-  const contactForm = document.getElementById("contactForm");
-
   addBasket.style.display = "none";
   basketSalvo.style.display = "none";
   section.style.display = "block";
@@ -365,61 +380,13 @@ const enviar = document.getElementById("enviar");
 enviar.addEventListener("click", () => {
   const contactForm = document.getElementById("contactForm");
 
-  const tipo = document.getElementById("tipo");
-  const tamanho = document.getElementById("tamanho");
-  const quantidade = document.getElementById("quantidade").value;
-  const sim = document.getElementById("sim");
-
-  const tipoText = tipo.options[tipo.selectedIndex].textContent;
-  const tamanhoText = tamanho.options[tamanho.selectedIndex].textContent;
-  const simText = sim.options[sim.selectedIndex].textContent;
-  const h2Value = h2.textContent;
-
-  const somaQuantidade = function () {
-    const pequeno = 0.6;
-    const medio = 3.5;
-    const grande = 5.0;
-
-    if (tamanhoText === "Pequeno") {
-      var somaPequeno = quantidade * pequeno;
-      return somaPequeno.toFixed(2);
-    } else if (tamanhoText === "Medio") {
-      var somaMedio = quantidade * medio;
-      return somaMedio.toFixed(2);
-    } else if (tamanhoText === "Grande") {
-      var somaGrande = quantidade * grande;
-      return somaGrande.toFixed(2);
-    }
-  };
-  let count = 0;
-  const newOder = somaQuantidade();
-  ++count;
-
   section.style.display = "none";
   header.style.display = "none";
   footer.style.display = "none";
   formEmail.style.display = "none";
   bascket.style.display = "none";
-  basketSalvo.style.display = "none"; // teste voltar pra nose depois
+  basketSalvo.style.display = "none"; 
   contactForm.style.display = "flex";
-
-  function invoice() {
-    const invoice = `
- <tr id='${count}'>
-      <td>${h2Value}</td>
-      <td>${tipoText}/${tamanhoText}/${quantidade}/${simText}</td>
-      <td>£ ${newOder}</td>
-  </tr>
-  
-  `;
-
-    const invoiceLocation = document.getElementById("invoice");
-    const tbody = document.getElementById("tbody");
-    tbody.innerHTML += invoice;
-    
-    //tbody.innerHTML += invoice;
-  }
-  invoice();
 });
 
 function checkedTask(id) {
