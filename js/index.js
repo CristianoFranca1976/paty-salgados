@@ -20,7 +20,7 @@ const selecionarSalgado = `
                 <option value="grande">Grande</option>
               </select>
               <label for="number">Quantidade: </label>
-              <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade" size="10" required>
+              <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade" size="10" required disabled>
               <label for="entrega">Entrega: </label>
               <select name="sim" id="sim" title="Tipo de entrega" required>
                 <option value="entrega"></option> 
@@ -208,6 +208,37 @@ const salgadosSet = (document.body.children[0].children[3].innerHTML =
   sectionSalgados);
 document.body.children[0].firstElementChild.innerHTML = selecionarSalgado;
 
+
+const quantidade = document.getElementById("quantidade");
+const tamanho = document.getElementById("tamanho");
+document.addEventListener("DOMContentLoaded", (event) => {
+  
+  
+
+  tamanho.addEventListener("change", (event) => {
+    if (tamanho.value === "pequeno") {
+      quantidade.disabled = false;
+      quantidade.min = 50;
+      quantidade.step = 50;
+      quantidade.value = "";
+    } else if (tamanho.value == "medio") {
+      quantidade.disabled = false;
+      quantidade.min = 1;
+      quantidade.step = 1;
+      quantidade.value = "";
+    } else if (tamanho.value === "grande") {
+      quantidade.disabled = false;
+      quantidade.min = 1;
+      quantidade.step = 1;
+      quantidade.value = "";
+    } else {
+      quantidade.disabled = true;
+    }
+  });
+});
+
+
+
 document.addEventListener("DOMContentLoaded", (event) => {
   const inputTexto = document.querySelector("#quantidade");
   const outputTexto = document.getElementById("total-pay");
@@ -250,6 +281,10 @@ function openPedido(id, img) {
   h2.textContent = id;
   imgPedido.src = img;
   document.body.style.height = "100vh";
+  quantidade.value = "";
+  tipo.value = "";
+  tamanho.value = "";
+  sim.value = "";
 }
 
 const btnVolta = document.getElementById("btn-voltar");
@@ -261,6 +296,12 @@ const basketSalvo = document.getElementsByClassName("basket-salvo")[0];
 const option = document.getElementsByTagName("option")[0];
 const option1 = document.getElementsByTagName("option")[1];
 
+
+
+// function voltarPagina() {
+//   history.back();
+// }
+
 btnVolta.addEventListener("click", () => {
   addBasket.style.display = "none";
   basketSalvo.style.display = "none";
@@ -270,11 +311,13 @@ btnVolta.addEventListener("click", () => {
   formEmail.style.display = "flex";
 });
 
+const sim = document.getElementById("sim");
+const tipo = document.getElementById("tipo");
 btnAdicionar.addEventListener("click", (id) => {
-  const tipo = document.getElementById("tipo");
+  
   const tamanho = document.getElementById("tamanho");
   const quantidade = document.getElementById("quantidade").value;
-  const sim = document.getElementById("sim");
+  
 
   const tipoText = tipo.options[tipo.selectedIndex].textContent;
   const tamanhoText = tamanho.options[tamanho.selectedIndex].textContent;
@@ -321,8 +364,8 @@ btnAdicionar.addEventListener("click", (id) => {
     </div>
    </div>
    `;
-  
-    const invoice = `
+
+  const invoice = `
  <tr id='${count}'>
       <td>${h2Value}</td>
       <td>${firtletterTipoText}/${firstletterTamanhoText}/${quantidade}/${simText}</td>
@@ -330,7 +373,7 @@ btnAdicionar.addEventListener("click", (id) => {
   </tr>
   
   `;
-   
+
   if (
     tipoText !== "" &&
     tipoText !== null &&
@@ -355,11 +398,9 @@ btnAdicionar.addEventListener("click", (id) => {
     basketSalvo.style.display = "flex";
     lista.innerHTML += newItem;
     tbody.innerHTML += invoice;
-    
   } else {
     alert("Por favor, preencha os campos vazios");
   }
-  
 });
 
 const btnVoltarOrder = document.getElementById("btn-voltarOrder");
@@ -385,7 +426,7 @@ enviar.addEventListener("click", () => {
   footer.style.display = "none";
   formEmail.style.display = "none";
   bascket.style.display = "none";
-  basketSalvo.style.display = "none"; 
+  basketSalvo.style.display = "none";
   contactForm.style.display = "flex";
 });
 
