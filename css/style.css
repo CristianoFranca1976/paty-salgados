@@ -162,7 +162,7 @@ nav {
   max-width: 500px;
   gap: 20px;
   padding: 30px 60px;
-  background-image: url(/assets/envelope.jpg);
+  background-image: url(/assets/backgroundEnvelope.png);
   background-size: cover;
   background-position: center;
 }
