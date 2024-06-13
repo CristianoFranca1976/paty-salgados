@@ -29,7 +29,7 @@ header {
 }
 #basket {
   position: sticky;
-  top: 5px;
+  top: 25px;
   margin-top: -50px;
   margin-left: auto;
   right: 10px;
@@ -499,5 +499,8 @@ label {
   }
   #contactForm {
     padding: 10px;
+  }
+  #basket {
+    margin-left: 0;
   }
 }

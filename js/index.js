@@ -320,6 +320,7 @@ btnAdicionar.addEventListener("click", (id) => {
   const h2Value = h2.textContent;
   const firtletterTipoText = tipoText.charAt();
   const firstletterTamanhoText = tamanhoText.charAt();
+  const totalPagar = document.getElementById("total-Pagar");
   totalAddBasket.innerText = lista.children.length + 1;
 
   const somaQuantidade = function () {
@@ -392,10 +393,10 @@ btnAdicionar.addEventListener("click", (id) => {
     bascket.style.display = "flex";
     addBasket.style.display = "none";
     basketSalvo.style.display = "flex";
-
     lista.innerHTML += newItem;
     tbody.innerHTML += invoice;
-  } else {
+   
+  } else  {
     alert("Por favor, preencha os campos vazios");
   }
 });
@@ -406,7 +407,6 @@ const contactForm = document.getElementById("contactForm");
 btnVoltarOrder.addEventListener("click", () => {
   addBasket.style.display = "none";
   basketSalvo.style.display = "none";
- 
   section.style.display = "block";
   header.style.display = "flex";
   footer.style.display = "flex";
