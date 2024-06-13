@@ -208,13 +208,9 @@ const salgadosSet = (document.body.children[0].children[3].innerHTML =
   sectionSalgados);
 document.body.children[0].firstElementChild.innerHTML = selecionarSalgado;
 
-
 const quantidade = document.getElementById("quantidade");
 const tamanho = document.getElementById("tamanho");
 document.addEventListener("DOMContentLoaded", (event) => {
-  
-  
-
   tamanho.addEventListener("change", (event) => {
     if (tamanho.value === "pequeno") {
       quantidade.disabled = false;
@@ -236,8 +232,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 });
-
-
 
 document.addEventListener("DOMContentLoaded", (event) => {
   const inputTexto = document.querySelector("#quantidade");
@@ -296,8 +290,7 @@ const btnAdicionar = document.getElementById("btn-adicionar");
 const basketSalvo = document.getElementsByClassName("basket-salvo")[0];
 const option = document.getElementsByTagName("option")[0];
 const option1 = document.getElementsByTagName("option")[1];
-
-
+const totalAddBasket = document.getElementById("total-add");
 
 // function voltarPagina() {
 //   history.back();
@@ -310,7 +303,7 @@ btnVolta.addEventListener("click", () => {
   formEmail.style.display = "flex";
   bascket.style.display = "flex";
   logo.style.display = "flex";
-   addBasket.style.display = "none";
+  addBasket.style.display = "none";
   basketSalvo.style.display = "none";
   document.body.style.height = "auto";
 });
@@ -318,10 +311,8 @@ btnVolta.addEventListener("click", () => {
 const sim = document.getElementById("sim");
 const tipo = document.getElementById("tipo");
 btnAdicionar.addEventListener("click", (id) => {
-  
   const tamanho = document.getElementById("tamanho");
   const quantidade = document.getElementById("quantidade").value;
-  
 
   const tipoText = tipo.options[tipo.selectedIndex].textContent;
   const tamanhoText = tamanho.options[tamanho.selectedIndex].textContent;
@@ -329,6 +320,7 @@ btnAdicionar.addEventListener("click", (id) => {
   const h2Value = h2.textContent;
   const firtletterTipoText = tipoText.charAt();
   const firstletterTamanhoText = tamanhoText.charAt();
+  totalAddBasket.innerText = lista.children.length + 1;
 
   const somaQuantidade = function () {
     const pequeno = 0.6;
@@ -397,9 +389,10 @@ btnAdicionar.addEventListener("click", (id) => {
     header.style.display = "none";
     footer.style.display = "none";
     formEmail.style.display = "none";
-    bascket.style.display = "none";
+    bascket.style.display = "flex";
     addBasket.style.display = "none";
     basketSalvo.style.display = "flex";
+
     lista.innerHTML += newItem;
     tbody.innerHTML += invoice;
   } else {
@@ -413,6 +406,7 @@ const contactForm = document.getElementById("contactForm");
 btnVoltarOrder.addEventListener("click", () => {
   addBasket.style.display = "none";
   basketSalvo.style.display = "none";
+ 
   section.style.display = "block";
   header.style.display = "flex";
   footer.style.display = "flex";

@@ -13,7 +13,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1400px;
+  max-width: 1200px;
 }
 header {
   height: 600px;
@@ -29,10 +29,10 @@ header {
 }
 #basket {
   position: sticky;
-  top: 10px;
+  top: 5px;
   margin-top: -50px;
-  margin-left: 1300px;
-  right: 300px;
+  margin-left: auto;
+  right: 10px;
   z-index: 1;
 }
 #logo, #logo1 {
@@ -144,6 +144,10 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
+}
+#total-add {
+  font-size: 1.5vh;
 }
 .basket:hover {
   box-shadow: 2px 2px 35px black;
@@ -439,7 +443,7 @@ label {
   max-width: 200px;
 }
 
-@media screen and (max-width: 1070px) {
+@media screen and (max-width: 1200px) {
   #container {
     width: 100%;
     padding: 0;
@@ -467,9 +471,6 @@ label {
   }
   input {
     width: auto;
-  }
-  #basket {
-    margin-left: 0;
   }
   .tipos {
     flex-direction: column;
