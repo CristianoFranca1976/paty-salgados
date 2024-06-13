@@ -262,10 +262,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 const btnCoxinha = document.getElementById("btn-coxinha");
 const addBasket = document.getElementById("addBasket");
 const section = document.getElementsByTagName("section")[0];
-const header = document.getElementsByTagName("header")[0];
+const header = document.getElementById("header");
 const footer = document.getElementsByTagName("footer")[0];
 const formEmail = document.getElementsByClassName("form-email")[0];
 const bascket = document.getElementsByClassName("basket")[0];
+const logo = document.getElementById("logo");
 
 const h2 = document.body.childNodes[1].children[0].children[0].childNodes[1];
 const imgPedido =
@@ -303,12 +304,15 @@ const option1 = document.getElementsByTagName("option")[1];
 // }
 
 btnVolta.addEventListener("click", () => {
-  addBasket.style.display = "none";
-  basketSalvo.style.display = "none";
   section.style.display = "block";
   header.style.display = "flex";
   footer.style.display = "flex";
   formEmail.style.display = "flex";
+  bascket.style.display = "flex";
+  logo.style.display = "flex";
+   addBasket.style.display = "none";
+  basketSalvo.style.display = "none";
+  document.body.style.height = "auto";
 });
 
 const sim = document.getElementById("sim");
@@ -414,6 +418,7 @@ btnVoltarOrder.addEventListener("click", () => {
   footer.style.display = "flex";
   formEmail.style.display = "flex";
   contactForm.style.display = "none";
+  document.body.style.height = "auto";
 });
 
 const enviar = document.getElementById("enviar");
