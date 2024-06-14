@@ -170,7 +170,7 @@ nav {
   gap: 20px;
   padding: 30px 60px;
   background-image: url(/assets/backgroundEnvelope.png);
-  background-size: cover;
+  background-size: 437px 615px;
   background-position: center;
 }
 input,
@@ -451,6 +451,7 @@ label {
   .form-email {
     width: auto;
     padding: 30px 10px;
+    background-size: auto;
   }
   #assunto,
   #nomecompleto,
