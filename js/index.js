@@ -217,26 +217,28 @@ document.addEventListener("DOMContentLoaded", (event) => {
       quantidade.min = 50;
       quantidade.step = 50;
       quantidade.value = "";
+      outputTexto.textContent = "£ ";
     } else if (tamanho.value == "medio") {
       quantidade.disabled = false;
       quantidade.min = 1;
       quantidade.step = 1;
       quantidade.value = "";
+      outputTexto.textContent = "£ ";
     } else if (tamanho.value === "grande") {
       quantidade.disabled = false;
       quantidade.min = 1;
       quantidade.step = 1;
       quantidade.value = "";
+      outputTexto.textContent = "£ ";
     } else {
       quantidade.disabled = true;
     }
   });
 });
 
+const outputTexto = document.getElementById("total-pay");
 document.addEventListener("DOMContentLoaded", (event) => {
   const inputTexto = document.querySelector("#quantidade");
-  const outputTexto = document.getElementById("total-pay");
-
   inputTexto.addEventListener("input", function () {
     const tamanhoText = tamanho.options[tamanho.selectedIndex].textContent;
     const pequeno = 0.6;
@@ -266,6 +268,8 @@ const h2 = document.body.childNodes[1].children[0].children[0].childNodes[1];
 const imgPedido =
   document.body.childNodes[1].children[0].children[0].childNodes[3];
 
+//const totalP = document.body.children[0].childNodes[13].children[1].children[0].childNodes[3];
+
 function openPedido(id, img) {
   section.style.display = "none";
   header.style.display = "none";
@@ -280,6 +284,7 @@ function openPedido(id, img) {
   tipo.value = "";
   tamanho.value = "";
   sim.value = "";
+  outputTexto.textContent = "£ ";
 }
 
 const btnVolta = document.getElementById("btn-voltar");
@@ -310,6 +315,8 @@ btnVolta.addEventListener("click", () => {
 
 const sim = document.getElementById("sim");
 const tipo = document.getElementById("tipo");
+const totalP = document.getElementById("totalP");
+
 btnAdicionar.addEventListener("click", (id) => {
   const tamanho = document.getElementById("tamanho");
   const quantidade = document.getElementById("quantidade").value;
@@ -320,7 +327,7 @@ btnAdicionar.addEventListener("click", (id) => {
   const h2Value = h2.textContent;
   const firtletterTipoText = tipoText.charAt();
   const firstletterTamanhoText = tamanhoText.charAt();
-  const totalPagar = document.getElementById("total-Pagar");
+
   totalAddBasket.innerText = lista.children.length + 1;
 
   const somaQuantidade = function () {
@@ -348,28 +355,57 @@ btnAdicionar.addEventListener("click", (id) => {
    <img id='icon_${count}' class='imagem-notchecked' src="./assets/rec.png" style="width: 20px;height: 20px;" alt="">
     </div>
     <div onclick='checkedTask(${count})' class="item-name" id='adicionados'>
-
       <p id='h2-value' class='paragraph-value'>${h2Value}</p>
       <p id='tipo-value' class='paragraph-value'>${tipoText}</p>
       <p id='tamanho-value' class='paragraph-value'>${tamanhoText}</p>
       <p id='quantidade-value' class='paragraph-value'>${quantidade}</p>
       <p id='delivery-value' class='paragraph-value'>${simText}</p>
-      <p id='total-value' class='paragraph-value'>£ ${newOder}</p>
+      <p id='total-value${count}' class='paragraph-value'>£ ${newOder}</p>
     </div>
     <div class="item-button">
      <button  onclick='deleteItem(${count})' type="button" class="delete" id='deleteId_${count}' disabled> <img  id='bin_${count}' src="/assets/recycle-bin.png" style="height: 20px;width: 20px;" alt="">Delete</button>
     </div>
    </div>
+   <div id='itemsContainer'></div>
    `;
-
   const invoice = `
  <tr id='${count}'>
       <td>${h2Value}</td>
       <td>${firtletterTipoText}/${firstletterTamanhoText}/${quantidade}/${simText}</td>
       <td>£ ${newOder}</td>
   </tr>
-  
   `;
+
+  let totalSum = 0;
+  updateTotal(newOder);
+
+  const itemsContainer = document.getElementById('itemsContainer');
+  if (!document.getElementById("totalP")) {
+    const totalDiv = `<div class='item'>
+        <p id="total" class="paragraph-value">Total: </p>
+        <p id="totalP" class="paragraph-value">$  ${totalSum.toFixed(2)}</p>
+    </div>`;
+    itemsContainer.innerHTML += totalDiv;
+  }  else {
+   
+    updateTotalDisplay();
+}
+
+  function updateTotal(newOder) {
+   
+    const orderValue = parseFloat(newOder);
+    if (!isNaN(orderValue)) {
+      totalSum += orderValue;
+    }
+  }
+
+  function updateTotalDisplay() {
+    // Atualiza o valor total exibido
+    const totalP = document.getElementById('totalP');
+    if (totalP) {
+        totalP.textContent = `$ ${totalSum.toFixed(2)}`;
+    }
+}
 
   if (
     tipoText !== "" &&
@@ -383,9 +419,11 @@ btnAdicionar.addEventListener("click", (id) => {
     quantidade !== undefined &&
     simText !== "" &&
     simText !== null &&
-    simText !== undefined
+    simText !== undefined &&
+    totalP
   ) {
     const tbody = document.getElementById("tbody");
+
     section.style.display = "none";
     header.style.display = "none";
     footer.style.display = "none";
@@ -395,10 +433,13 @@ btnAdicionar.addEventListener("click", (id) => {
     basketSalvo.style.display = "flex";
     lista.innerHTML += newItem;
     tbody.innerHTML += invoice;
-   
-  } else  {
+    //totalP.textContent = `$ ${totalSum.toFixed(2)}`;
+    
+    
+  } else {
     alert("Por favor, preencha os campos vazios");
   }
+  
 });
 
 const btnVoltarOrder = document.getElementById("btn-voltarOrder");
