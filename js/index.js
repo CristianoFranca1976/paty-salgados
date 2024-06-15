@@ -246,11 +246,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const grande = 5.0;
 
     if (tamanhoText === "Pequeno") {
-      return (outputTexto.textContent = "£ " + inputTexto.value * pequeno);
+      return (outputTexto.textContent = "£ " + (inputTexto.value * pequeno).toFixed(2));
     } else if (tamanhoText === "Medio") {
-      return (outputTexto.textContent = "£ " + inputTexto.value * medio);
+      return (outputTexto.textContent = "£ " + (inputTexto.value * medio).toFixed(2));
     } else if (tamanhoText === "Grande") {
-      return (outputTexto.textContent = "£ " + inputTexto.value * grande);
+      return (outputTexto.textContent = "£ " + (inputTexto.value * grande).toFixed(2));
     }
   });
 });
@@ -316,6 +316,7 @@ btnVolta.addEventListener("click", () => {
 const sim = document.getElementById("sim");
 const tipo = document.getElementById("tipo");
 const totalP = document.getElementById("totalP");
+const totalInvoice = document.getElementById("total-invoice");
 
 btnAdicionar.addEventListener("click", (id) => {
   const tamanho = document.getElementById("tamanho");
@@ -396,7 +397,7 @@ btnAdicionar.addEventListener("click", (id) => {
     header.style.display = "none";
     footer.style.display = "none";
     formEmail.style.display = "none";
-    bascket.style.display = "flex";
+    bascket.style.display = "none";
     addBasket.style.display = "none";
     basketSalvo.style.display = "flex";
     lista.innerHTML += newItem;
@@ -408,8 +409,13 @@ btnAdicionar.addEventListener("click", (id) => {
   
   console.log(typeof convert)
  
-  const currentTotal = Number(totalP.textContent) || 0; 
-totalP.textContent =  currentTotal + convert; 
+  const currentTotal = Number(totalP.textContent.replace('$ ', '')) || 0; 
+  const newTotal = currentTotal + convert;
+  totalP.textContent = `$ ${newTotal.toFixed(2)}`; 
+  
+  const currentInvoce = Number(totalInvoice.textContent.replace('$ ', '')) || 0;
+  const newTotalInvoice = currentInvoce + convert;
+  totalInvoice.textContent = `$ ${newTotalInvoice.toFixed(2)}`; 
 });
 
 const btnVoltarOrder = document.getElementById("btn-voltarOrder");
