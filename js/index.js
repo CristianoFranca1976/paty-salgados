@@ -366,7 +366,6 @@ btnAdicionar.addEventListener("click", (id) => {
      <button  onclick='deleteItem(${count})' type="button" class="delete" id='deleteId_${count}' disabled> <img  id='bin_${count}' src="/assets/recycle-bin.png" style="height: 20px;width: 20px;" alt="">Delete</button>
     </div>
    </div>
-   <div id='itemsContainer'></div>
    `;
   const invoice = `
  <tr id='${count}'>
@@ -375,37 +374,6 @@ btnAdicionar.addEventListener("click", (id) => {
       <td>£ ${newOder}</td>
   </tr>
   `;
-
-  let totalSum = 0;
-  updateTotal(newOder);
-
-  const itemsContainer = document.getElementById('itemsContainer');
-  if (!document.getElementById("totalP")) {
-    const totalDiv = `<div class='item'>
-        <p id="total" class="paragraph-value">Total: </p>
-        <p id="totalP" class="paragraph-value">$  ${totalSum.toFixed(2)}</p>
-    </div>`;
-    itemsContainer.innerHTML += totalDiv;
-  }  else {
-   
-    updateTotalDisplay();
-}
-
-  function updateTotal(newOder) {
-   
-    const orderValue = parseFloat(newOder);
-    if (!isNaN(orderValue)) {
-      totalSum += orderValue;
-    }
-  }
-
-  function updateTotalDisplay() {
-    // Atualiza o valor total exibido
-    const totalP = document.getElementById('totalP');
-    if (totalP) {
-        totalP.textContent = `$ ${totalSum.toFixed(2)}`;
-    }
-}
 
   if (
     tipoText !== "" &&
@@ -433,13 +401,15 @@ btnAdicionar.addEventListener("click", (id) => {
     basketSalvo.style.display = "flex";
     lista.innerHTML += newItem;
     tbody.innerHTML += invoice;
-    //totalP.textContent = `$ ${totalSum.toFixed(2)}`;
-    
-    
   } else {
     alert("Por favor, preencha os campos vazios");
   }
+  const convert = Number(newOder);
   
+  console.log(typeof convert)
+ 
+  const currentTotal = Number(totalP.textContent) || 0; 
+totalP.textContent =  currentTotal + convert; 
 });
 
 const btnVoltarOrder = document.getElementById("btn-voltarOrder");
