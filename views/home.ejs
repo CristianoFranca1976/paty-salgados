@@ -11,7 +11,7 @@
     <div id="container">
       <div id="addBasket"></div>
       <div id="basket">
-        <button type="button" class="basket">
+        <button type="button" class="basket" onclick="openBasket()">
           <img src="/assets/basket.png" alt="basket" class="basketLogo" />
           <p id="total-add">0</p>
         </button>
@@ -126,7 +126,10 @@
             </table>
             </div>
       </div>
+      <div id="btns2">
+      <button type="button" class="btn-adicionar" id="btn-home" >Voltar</button>
       <button type="submit" id="btn-enviar">Enviar</button>
+      </div>
   </form>
   <script>
        document.getElementById('contactForm').addEventListener('submit', async (event) => {

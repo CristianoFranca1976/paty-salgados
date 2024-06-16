@@ -7,8 +7,8 @@ const selecionarSalgado = `
           <form action="" method="get" class="form-pedido">
             <div class="tipos">
               <label for="tipo">Tipo: </label>
-            <select name="tipo" id="tipo" title="tipo" required>
-            <option value="Tipo"></option>
+            <select name="tipo" id="tipo" title="tipo"  required>
+            <option value="Tipo" size="40"></option>
               <option value="frito">Frito</option>
               <option value="congelado">Congelado</option>
             </select>
@@ -246,11 +246,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const grande = 5.0;
 
     if (tamanhoText === "Pequeno") {
-      return (outputTexto.textContent = "£ " + (inputTexto.value * pequeno).toFixed(2));
+      return (outputTexto.textContent =
+        "£ " + (inputTexto.value * pequeno).toFixed(2));
     } else if (tamanhoText === "Medio") {
-      return (outputTexto.textContent = "£ " + (inputTexto.value * medio).toFixed(2));
+      return (outputTexto.textContent =
+        "£ " + (inputTexto.value * medio).toFixed(2));
     } else if (tamanhoText === "Grande") {
-      return (outputTexto.textContent = "£ " + (inputTexto.value * grande).toFixed(2));
+      return (outputTexto.textContent =
+        "£ " + (inputTexto.value * grande).toFixed(2));
     }
   });
 });
@@ -268,7 +271,16 @@ const h2 = document.body.childNodes[1].children[0].children[0].childNodes[1];
 const imgPedido =
   document.body.childNodes[1].children[0].children[0].childNodes[3];
 
-//const totalP = document.body.children[0].childNodes[13].children[1].children[0].childNodes[3];
+function openBasket() {
+  section.style.display = "none";
+  header.style.display = "none";
+  footer.style.display = "none";
+  formEmail.style.display = "none";
+  bascket.style.display = "none";
+  addBasket.style.display = "none";
+  basketSalvo.style.display = "flex";
+  document.body.style.height = "100vh";
+}
 
 function openPedido(id, img) {
   section.style.display = "none";
@@ -297,10 +309,6 @@ const option = document.getElementsByTagName("option")[0];
 const option1 = document.getElementsByTagName("option")[1];
 const totalAddBasket = document.getElementById("total-add");
 
-// function voltarPagina() {
-//   history.back();
-// }
-
 btnVolta.addEventListener("click", () => {
   section.style.display = "block";
   header.style.display = "flex";
@@ -321,7 +329,6 @@ const totalInvoice = document.getElementById("total-invoice");
 btnAdicionar.addEventListener("click", (id) => {
   const tamanho = document.getElementById("tamanho");
   const quantidade = document.getElementById("quantidade").value;
-
   const tipoText = tipo.options[tipo.selectedIndex].textContent;
   const tamanhoText = tamanho.options[tamanho.selectedIndex].textContent;
   const simText = sim.options[sim.selectedIndex].textContent;
@@ -406,16 +413,16 @@ btnAdicionar.addEventListener("click", (id) => {
     alert("Por favor, preencha os campos vazios");
   }
   const convert = Number(newOder);
-  
-  console.log(typeof convert)
- 
-  const currentTotal = Number(totalP.textContent.replace('$ ', '')) || 0; 
+
+  console.log(typeof convert);
+
+  const currentTotal = Number(totalP.textContent.replace("£ ", "")) || 0;
   const newTotal = currentTotal + convert;
-  totalP.textContent = `$ ${newTotal.toFixed(2)}`; 
-  
-  const currentInvoce = Number(totalInvoice.textContent.replace('$ ', '')) || 0;
+  totalP.textContent = `£ ${newTotal.toFixed(2)}`;
+
+  const currentInvoce = Number(totalInvoice.textContent.replace("£ ", "")) || 0;
   const newTotalInvoice = currentInvoce + convert;
-  totalInvoice.textContent = `$ ${newTotalInvoice.toFixed(2)}`; 
+  totalInvoice.textContent = `£ ${newTotalInvoice.toFixed(2)}`;
 });
 
 const btnVoltarOrder = document.getElementById("btn-voltarOrder");
@@ -425,6 +432,7 @@ btnVoltarOrder.addEventListener("click", () => {
   addBasket.style.display = "none";
   basketSalvo.style.display = "none";
   section.style.display = "block";
+  bascket.style.display = "flex";
   header.style.display = "flex";
   footer.style.display = "flex";
   formEmail.style.display = "flex";
@@ -444,6 +452,21 @@ enviar.addEventListener("click", () => {
   bascket.style.display = "none";
   basketSalvo.style.display = "none";
   contactForm.style.display = "flex";
+});
+
+const btnHome = document.getElementById("btn-home");
+
+btnHome.addEventListener("click", () => { 
+section.style.display = "block";
+  header.style.display = "flex";
+  footer.style.display = "flex";
+  formEmail.style.display = "flex";
+  bascket.style.display = "flex";
+  logo.style.display = "flex";
+  addBasket.style.display = "none";
+  basketSalvo.style.display = "none";
+  contactForm.style.display = "none";
+  document.body.style.height = "auto";
 });
 
 function checkedTask(id) {
