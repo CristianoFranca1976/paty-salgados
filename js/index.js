@@ -472,6 +472,15 @@ section.style.display = "block";
   document.body.style.height = "auto";
 });
 
+// const btnEnviar = document.getElementById("btn-enviar");
+
+
+
+//     btnEnviar.addEventListener("click", () => { 
+//     nameInput.value = '';
+//     emailInput.value = '';
+// });
+
 function checkedTask(id) {
   const deleteId = document.getElementById("deleteId_" + id);
   const checkedItem = document.getElementById(id);
