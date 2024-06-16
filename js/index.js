@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 });
-
+const container = document.getElementById("container");
 const btnCoxinha = document.getElementById("btn-coxinha");
 const addBasket = document.getElementById("addBasket");
 const section = document.getElementsByTagName("section")[0];
@@ -319,6 +319,7 @@ btnVolta.addEventListener("click", () => {
   addBasket.style.display = "none";
   basketSalvo.style.display = "none";
   document.body.style.height = "auto";
+
 });
 
 const sim = document.getElementById("sim");
@@ -409,6 +410,7 @@ btnAdicionar.addEventListener("click", (id) => {
     basketSalvo.style.display = "flex";
     lista.innerHTML += newItem;
     tbody.innerHTML += invoice;
+
   } else {
     alert("Por favor, preencha os campos vazios");
   }
@@ -438,6 +440,7 @@ btnVoltarOrder.addEventListener("click", () => {
   formEmail.style.display = "flex";
   contactForm.style.display = "none";
   document.body.style.height = "auto";
+  
 });
 
 const enviar = document.getElementById("enviar");

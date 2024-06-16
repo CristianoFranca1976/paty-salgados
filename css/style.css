@@ -182,7 +182,7 @@ select {
   outline: none;
   color: white;
   font-size: 1.4vh;
-  width: 17vh;
+  width: 100%;
 }
 option {
   background-color: gold;
@@ -211,7 +211,7 @@ textarea {
 #addBasket {
   border: 5px ridge rgb(5, 5, 5);
   position: relative;
-  width: auto;
+  width: 100%;
   height: auto;
   background-color: rgba(255, 255, 0, 0.877);
   display: flex;
@@ -285,7 +285,7 @@ textarea {
 }
 .basket-salvo {
   border: 5px solid black;
-  width: auto;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -314,7 +314,6 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
   gap: 50px;
   border-radius: 10px;
   transition: 3s;
@@ -449,12 +448,18 @@ label {
   max-width: 200px;
 }
 
-@media screen and (max-width: 1200px) {
-  #container {
+@media screen and (max-width: 718px) {
+ #container {
     width: 100%;
     height: auto;
     padding: 0;
   }
+
+}
+
+
+@media screen and (max-width: 900px) {
+ 
   .form-email {
     width: auto;
     padding: 30px 10px;
@@ -493,9 +498,9 @@ label {
   }
   .item-name {
     flex-direction: column;
+    gap: 5px;
   }
   .item {
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
