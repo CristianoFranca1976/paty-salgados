@@ -87,6 +87,7 @@
           <p id="total" class="paragraph-value">Total: </p>
           <p id="totalP" class="paragraph-value">$ </p>
           </div>
+          <p id="warning" class="warning"></p>
         <div id="btns1">
           <button type="button" class="btn-adicionar" id="btn-voltarOrder" >Voltar</button>
           <button type="button" class="btn-adicionar" id="enviar">Enviar</button>
@@ -97,7 +98,7 @@
       <label for="name">Nome:</label>
       <input type="text" id="name" name="name" required>
       <br>
-      <label for="email">Email:</label>
+      <label for="email-order">Email:</label>
       <input type="email" id="email-order" name="email" required>
       <br>
       <div id="invoice">
@@ -126,6 +127,7 @@
             </table>
             </div>
       </div>
+      <p class="warning">Se a entrega for 'Sim', o valor total nao esta incluido.</p>
       <div id="btns2">
       <button type="button" class="btn-adicionar" id="btn-home" >Voltar</button>
       <button type="submit" id="btn-enviar">Enviar</button>

@@ -9,23 +9,23 @@ const selecionarSalgado = `
               <label for="tipo">Tipo: </label>
             <select name="tipo" id="tipo" title="tipo"  required>
             <option value="Tipo" size="40"></option>
-              <option value="frito">Frito</option>
-              <option value="congelado">Congelado</option>
+              <option value="Frito">Frito</option>
+              <option value="Congelado">Congelado</option>
             </select>
               <label for="">Tamanho: </label>
               <select name="tamanho" id="tamanho" title="select o tamanho" required>
                 <option value="tamanho"></option>
-                <option value="pequeno">Pequeno</option>
-                <option value="medio">Medio</option>
-                <option value="grande">Grande</option>
+                <option value="Pequeno">Pequeno</option>
+                <option value="Medio">Medio</option>
+                <option value="Grande">Grande</option>
               </select>
               <label for="number">Quantidade: </label>
               <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade" size="10" required disabled>
               <label for="entrega">Entrega: </label>
               <select name="sim" id="sim" title="Tipo de entrega" required>
                 <option value="entrega"></option> 
-                <option value="nao">Nao</option>
-                <option value="sim">Sim</option>
+                <option value="Nao">Nao</option>
+                <option value="Sim">Sim</option>
               </select>
             </div>
              <div class="total">
@@ -212,19 +212,19 @@ const quantidade = document.getElementById("quantidade");
 const tamanho = document.getElementById("tamanho");
 document.addEventListener("DOMContentLoaded", (event) => {
   tamanho.addEventListener("change", (event) => {
-    if (tamanho.value === "pequeno") {
+    if (tamanho.value === "Pequeno") {
       quantidade.disabled = false;
       quantidade.min = 50;
       quantidade.step = 50;
       quantidade.value = "";
       outputTexto.textContent = "£ ";
-    } else if (tamanho.value == "medio") {
+    } else if (tamanho.value == "Medio") {
       quantidade.disabled = false;
       quantidade.min = 1;
       quantidade.step = 1;
       quantidade.value = "";
       outputTexto.textContent = "£ ";
-    } else if (tamanho.value === "grande") {
+    } else if (tamanho.value === "Grande") {
       quantidade.disabled = false;
       quantidade.min = 1;
       quantidade.step = 1;
@@ -327,15 +327,14 @@ const tipo = document.getElementById("tipo");
 const totalP = document.getElementById("totalP");
 const totalInvoice = document.getElementById("total-invoice");
 
+
 btnAdicionar.addEventListener("click", (id) => {
   const tamanho = document.getElementById("tamanho");
   const quantidade = document.getElementById("quantidade").value;
-  const tipoText = tipo.options[tipo.selectedIndex].textContent;
-  const tamanhoText = tamanho.options[tamanho.selectedIndex].textContent;
-  const simText = sim.options[sim.selectedIndex].textContent;
+  const tipoText = tipo.options[tipo.selectedIndex].value;
+  const tamanhoText = tamanho.options[tamanho.selectedIndex].value;
+  const simText = sim.options[sim.selectedIndex].value;
   const h2Value = h2.textContent;
-  const firtletterTipoText = tipoText.charAt();
-  const firstletterTamanhoText = tamanhoText.charAt();
 
   totalAddBasket.innerText = lista.children.length + 1;
 
@@ -359,6 +358,12 @@ btnAdicionar.addEventListener("click", (id) => {
   const newOder = somaQuantidade();
   ++count;
 
+  if (simText === 'Sim') {
+    document.querySelector('.warning').innerHTML = 'O valor nao esta incluido a entrega'
+  } else {
+    document.querySelector('.warning').innerHTML = '';
+  }
+
   const newItem = `<div class="item" id='${count}'>
     <div  onclick='checkedTask(${count})' class="item-icon">
    <img id='icon_${count}' class='imagem-notchecked' src="./assets/rec.png" style="width: 20px;height: 20px;" alt="">
@@ -379,7 +384,7 @@ btnAdicionar.addEventListener("click", (id) => {
   const invoice = `
  <tr id='${count}'>
       <td>${h2Value}</td>
-      <td>${firtletterTipoText}/${firstletterTamanhoText}/${quantidade}/${simText}</td>
+      <td>${tipoText.charAt()}/${tamanhoText.charAt()}/${quantidade}/${simText.charAt()}</td>
       <td>£ ${newOder}</td>
   </tr>
   `;
@@ -415,8 +420,6 @@ btnAdicionar.addEventListener("click", (id) => {
     alert("Por favor, preencha os campos vazios");
   }
   const convert = Number(newOder);
-
-  console.log(typeof convert);
 
   const currentTotal = Number(totalP.textContent.replace("£ ", "")) || 0;
   const newTotal = currentTotal + convert;
@@ -471,15 +474,6 @@ section.style.display = "block";
   contactForm.style.display = "none";
   document.body.style.height = "auto";
 });
-
-// const btnEnviar = document.getElementById("btn-enviar");
-
-
-
-//     btnEnviar.addEventListener("click", () => { 
-//     nameInput.value = '';
-//     emailInput.value = '';
-// });
 
 function checkedTask(id) {
   const deleteId = document.getElementById("deleteId_" + id);
