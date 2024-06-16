@@ -319,14 +319,12 @@ btnVolta.addEventListener("click", () => {
   addBasket.style.display = "none";
   basketSalvo.style.display = "none";
   document.body.style.height = "auto";
-
 });
 
 const sim = document.getElementById("sim");
 const tipo = document.getElementById("tipo");
 const totalP = document.getElementById("totalP");
 const totalInvoice = document.getElementById("total-invoice");
-
 
 btnAdicionar.addEventListener("click", (id) => {
   const tamanho = document.getElementById("tamanho");
@@ -337,7 +335,6 @@ btnAdicionar.addEventListener("click", (id) => {
   const h2Value = h2.textContent;
 
   totalAddBasket.innerText = lista.children.length + 1;
-
   const somaQuantidade = function () {
     const pequeno = 0.6;
     const medio = 3.5;
@@ -358,10 +355,11 @@ btnAdicionar.addEventListener("click", (id) => {
   const newOder = somaQuantidade();
   ++count;
 
-  if (simText === 'Sim') {
-    document.querySelector('.warning').innerHTML = 'O valor nao esta incluido a entrega'
+  if (simText === "Sim") {
+    document.querySelector(".warning").innerHTML =
+      "O valor nao esta incluido a entrega";
   } else {
-    document.querySelector('.warning').innerHTML = '';
+    document.querySelector(".warning").innerHTML = "";
   }
 
   const newItem = `<div class="item" id='${count}'>
@@ -382,7 +380,7 @@ btnAdicionar.addEventListener("click", (id) => {
    </div>
    `;
   const invoice = `
- <tr id='${count}'>
+ <tr id='${count}' onclick='checkedTask(${count}) class='tota-i'>
       <td>${h2Value}</td>
       <td>${tipoText.charAt()}/${tamanhoText.charAt()}/${quantidade}/${simText.charAt()}</td>
       <td>£ ${newOder}</td>
@@ -415,7 +413,6 @@ btnAdicionar.addEventListener("click", (id) => {
     basketSalvo.style.display = "flex";
     lista.innerHTML += newItem;
     tbody.innerHTML += invoice;
-
   } else {
     alert("Por favor, preencha os campos vazios");
   }
@@ -443,7 +440,6 @@ btnVoltarOrder.addEventListener("click", () => {
   formEmail.style.display = "flex";
   contactForm.style.display = "none";
   document.body.style.height = "auto";
-  
 });
 
 const enviar = document.getElementById("enviar");
@@ -462,8 +458,8 @@ enviar.addEventListener("click", () => {
 
 const btnHome = document.getElementById("btn-home");
 
-btnHome.addEventListener("click", () => { 
-section.style.display = "block";
+btnHome.addEventListener("click", () => {
+  section.style.display = "block";
   header.style.display = "flex";
   footer.style.display = "flex";
   formEmail.style.display = "flex";
