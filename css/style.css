@@ -311,7 +311,7 @@ h3 {
   flex-direction: column;
   gap: 15px;
 }
-.item {
+.item, .item1 {
   width: 100%;
   border: 5px ridge yellow;
   display: flex;
