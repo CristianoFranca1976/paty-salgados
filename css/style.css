@@ -481,6 +481,9 @@ label {
   #Email {
     flex-direction: column;
   }
+  #name {
+    width: 100%;
+  }
   textarea {
     width: auto;
     columns: auto;
