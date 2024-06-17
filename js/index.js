@@ -214,6 +214,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   tamanho.addEventListener("change", (event) => {
     if (tamanho.value === "Pequeno") {
       quantidade.disabled = false;
+      quantidade.value = '50';
+      quantidade.style.cursor = 'default';
       quantidade.min = 50;
       quantidade.step = 50;
       quantidade.value = "";
@@ -413,10 +415,7 @@ btnAdicionar.addEventListener("click", (id) => {
     basketSalvo.style.display = "flex";
     lista.innerHTML += newItem;
     tbody.innerHTML += invoice;
-  } else {
-    alert("Por favor, preencha os campos vazios");
-  }
-  const convert = Number(newOder);
+    const convert = Number(newOder);
 
   const currentTotal = Number(totalP.textContent.replace("£ ", "")) || 0;
   const newTotal = currentTotal + convert;
@@ -425,6 +424,11 @@ btnAdicionar.addEventListener("click", (id) => {
   const currentInvoce = Number(totalInvoice.textContent.replace("£ ", "")) || 0;
   const newTotalInvoice = currentInvoce + convert;
   totalInvoice.textContent = `£ ${newTotalInvoice.toFixed(2)}`;
+
+  } else {
+    alert("Por favor, preencha os campos vazios");
+  }
+  
 });
 
 const btnVoltarOrder = document.getElementById("btn-voltarOrder");
