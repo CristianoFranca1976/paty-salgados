@@ -210,6 +210,13 @@ document.body.children[0].firstElementChild.innerHTML = selecionarSalgado;
 
 const quantidade = document.getElementById("quantidade");
 const tamanho = document.getElementById("tamanho");
+
+quantidade.addEventListener("keydown", (e) => { 
+  if (e.key !== "ArrowUp" && e.key !== "ArrowDown") {
+    e.preventDefault();
+}
+});
+
 document.addEventListener("DOMContentLoaded", (event) => {
   tamanho.addEventListener("change", (event) => {
     if (tamanho.value === "Pequeno") {
