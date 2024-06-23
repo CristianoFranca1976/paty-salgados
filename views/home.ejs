@@ -1,170 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="shortcut icon" href="/assets/LetraC.png" type="image/x-icon">
-    <title>Salgados</title>
-  </head>
-  <body>
-    <div id="container">
-      <div id="addBasket"></div>
-      <div id="basket">
-        <button type="button" class="basket" onclick="openBasket()">
-          <img src="/assets/basket.png" alt="basket" class="basketLogo" />
-          <p id="total-add">0</p>
-        </button>
-      </div>
-      <header id="header">
-        <img src="/assets/logo.jpeg" alt="" id="logo" />
-        <h1>Paty Salgados</h1>
-      </header>
-      <section></section>
-      <form
-        action="https://formsubmit.co/49f120962618ac269b0179357f2a2502"
-        method="post"
-        class="form-email"
-      >
-        <div id="assunto">
-          <label for="assunto">Assunto:</label>
-          <select name="assunto" title="Assunto">
-            <option value="Suporte">Suporte</option>
-            <option value="Sugestões">Sugestões</option>
-            <option value="Reclamação">Reclamação</option>
-            <option value="Dúvidas">Dúvidas</option>
-          </select>
-        </div>
-        <div id="nomecompleto">
-          <label for="NomeCompleto">Nome Completo:</label>
-          <input type="text" name="nome" placeholder="Seu nome aqui" />
-        </div>
-        <div id="Email">
-          <label for="email">E-mail</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Seu e-mail aqui"
-            id="email"
-            required=""
-          />
-        </div>
-        <br />
-        <div id="Mensagem">
-          <label for="mensagem">Mensagem:</label>
-          <br />
-          <textarea
-            name="mensagem"
-            id="mensagem"
-            cols="40"
-            rows="10"
-            placeholder="Sua mensagem aqui"
-            required=""
-          ></textarea>
-        </div>
-        <button type="submit" class="basket" title="send" >
-          <img src="/assets/paper-plane.png" alt="" class="logoNav">
-        </button>
-      </form>
-      <footer>
-        <div class="autor">
-          <img src="/assets/LetraC.png" alt="letter C" class="logoNav" />
-          <p>Cristiano Developer</p>
-        </div>
-        <nav>
-          <a href="mailto:cristiano.franca@hotmal.co.uk?subject=Sobre%20web%20sites&body=Oi,%0D%0A Eu gostaria de obter mais informacoes de obter um website." title="email" target="_blank">
-            <img src="/assets/email.png" alt="emal logo" class="logoNav" />
-          </a>
-          <a href="https://github.com/CristianoFranca1976" title="GitHub" target="_blank">
-            <img src="/assets/github.png" alt="github logo" class="logoNav" />
-          </a>
-        </nav>
-      </footer>
-      <div class="basket-salvo">
-        <h3 class="ordem" id="od">Ordems</h3>
-        <div class="listas"></div>
-        <div class='item'>
-          <p id="total" class="paragraph-value">Total: </p>
-          <p id="totalP" class="paragraph-value">$ </p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Cristano Franca">
+  <meta name="description" content="Website sell Salgados in UK Oxford">
+  <meta name="robot" content="index, follow">
+  <link rel="stylesheet" href="css/style.css">
+  <title> <%= title %> </title>
+</head>
+<body>
+  <div id="container">
+    <%- include('partials/header') %>
+    <h3>Lista de Salgados</h3>
+    <main>
+      <div id="line-one" class="lines">
+        <% items.forEach(function(item) { %>
+      <div class="itens">
+        <img src="/<%= item.image.toLowerCase() %>" alt="<%= item.name %>" class="salgadosIMG" />
+        <div class="info">
+          <div class="nome">
+            <h2><%= item.name %></h2>
+            <form action="/inputs" method="get">
+              <input type="hidden" name="itemName" value="<%= item.name %>">
+            <button type="submit" class="basket" >
+              <img
+                src="basket.png"
+                alt="basket"
+                class="basketLogo"
+                id="btn-coxinha"
+              />
+            </button>
+           </form>
           </div>
-          <p id="warning" class="warning"></p>
-        <div id="btns1">
-          <button type="button" class="btn-adicionar" id="btn-voltarOrder" >Voltar</button>
-          <button type="button" class="btn-adicionar" id="enviar">Enviar</button>
-          </div>
-    </div>
-    <form id="contactForm">
-      <h1>Envie seu pedido </h1>
-      <label for="name">Nome:</label>
-      <input type="text" id="name" name="name" required>
-      <br>
-      <label for="email-order">Email:</label>
-      <input type="email" id="email-order" name="email" required>
-      <br>
-      <div id="invoice">
-        <div class="topEmail" >
-          <img src="/assets/LetraC.png" alt="" id="logo">
-          <h2>Invoice</h2>
-          </div>
-     <div class="table_component" role="region" tabindex="0">
-            <table id='myTable'>
-                <caption>Paty Salgados</caption>
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Descricao</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody id='tbody'>
-                 </tbody> 
-                 <tfoot>
-                    <tr>
-                        <td colspan="2">Total</td>
-                        <td id="total-invoice"></td>
-                    </tr>
-                </tfoot>
-            </table>
-            </div>
+          <p class="description">
+            <%= item.descricao %>
+          </p>
+        </div>
       </div>
-      <p class="warning">Se a entrega for 'Sim', o valor total nao esta incluido.</p>
-      <div id="btns2">
-      <button type="button" class="btn-adicionar" id="btn-home" >Voltar</button>
-      <button type="submit" id="btn-enviar">Enviar</button>
+      <% }); %>
       </div>
-  </form>
-  <script>
-
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email-order");
-
-       document.getElementById('contactForm').addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(event.target);
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email')
-        };
-
-        const response = await fetch('/send-email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        if (response.ok) {
-            alert('Email enviado com sucesso!');
-            nameInput.value = '';
-            emailInput.value = '';
-            history.back();
-        } else {
-            alert('Houve um erro ao enviar o email.');
-        }
-    });
-  </script>
-    <script src="/js/index.js"></script>
-  </body>
+    </main>
+    <%- include('partials/footer') %>
+  </div>
+  <script src="/js/script.js"></script>
+</body>
 </html>

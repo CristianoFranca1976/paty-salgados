@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Cristano Franca" />
+    <meta name="description" content="Website sell Salgados in UK Oxford" />
+    <meta name="robot" content="index, follow" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <main>
+      <form id="contactForm">
+        <h1>Envie seu pedido</h1>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required />
+        <br />
+        <label for="email-order">Email:</label>
+        <input type="email" id="email-order" name="email" required />
+        <br />
+        <div id="invoice">
+          <div class="topEmail">
+            <img src="LetraC.png" alt="" class="logo" />
+            <h2>Invoice</h2>
+          </div>
+          <div class="table_component" role="region" tabindex="0">
+            <table id="myTable">
+              <caption>
+                Paty Salgados
+              </caption>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Descrição</th>
+                  <th>Total</th>
+                  <th>Deletar</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                <% if (basket.length > 0) { %> 
+                  <% basket.forEach(function(item, index) { %>
+                    <tr>
+                      <td><%= item.name %></td>
+                      <td>
+                        <%= item.tipo.charAt(0) %> / <%= item.tamanho.charAt(0) %> /
+                        <%= item.quantidade %> / <%= item.entrega.charAt(0) %>
+                      </td>
+                      <td class="total-item"><%= item.total %></td>
+                      <td>
+                        <button type="button" class="btn-delete" data-index="<%= index %>">
+                          Deletar
+                        </button>
+                      </td>
+                    </tr>
+                  <% }); %> 
+                <% } else { %>
+                  <tr>
+                    <td colspan="4">Cesta vazia.</td>
+                  </tr>
+                <% } %>
+              </tbody>
+              <tfoot id="tfoot">
+                <tr>
+                  <td colspan="2">Total</td>
+                  <td id="total-invoice">£ 00.00</td>
+                  <!-- Placeholder para o total -->
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <p class="warning">
+          Se a entrega for 'Sim', o valor total não está incluído.
+        </p>
+        <div id="btns2">
+          <a href="/" class="btn-adicionar" id="btn-voltar">Voltar</a>
+          <button type="submit" id="btn-enviar">Enviar</button>
+        </div>
+      </form>
+    </main>
+    <script>
+      // Função para formatar valores como moeda
+      function formatCurrency(value) {
+        return `£ ${parseFloat(value).toFixed(2)}`;
+      }
+
+      // Função para calcular o total
+      function calcularTotal() {
+        let total = 0;
+        const totalElements = document.querySelectorAll("#myTable tbody tr .total-item");
+        totalElements.forEach((element) => {
+          const valorTotal = parseFloat(element.textContent.replace("£", ""));
+          if (!isNaN(valorTotal)) {
+            total += valorTotal;
+          }
+        });
+        return total;
+      }
+
+      // Função para atualizar o total na tabela
+      function atualizarTotal() {
+        const totalInvoice = document.getElementById("total-invoice");
+        totalInvoice.textContent = formatCurrency(calcularTotal());
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const deleteButtons = document.querySelectorAll(".btn-delete");
+        deleteButtons.forEach((button) => {
+          button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const index = button.getAttribute("data-index");
+            fetch(`/delete-item/${index}`, { method: "DELETE" })
+              .then((response) => {
+                if (response.ok) {
+                  location.reload();
+                } else {
+                  console.error("Erro ao excluir item:", response);
+                }
+              })
+              .catch((error) => console.error("Erro ao excluir item:", error));
+          });
+        });
+
+        // Formatar os valores dos itens como moeda
+        const totalItems = document.querySelectorAll(".total-item");
+        totalItems.forEach((item) => {
+          item.textContent = formatCurrency(item.textContent);
+        });
+
+        // Atualizar o total na tabela
+        atualizarTotal();
+      });
+
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email-order");
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(event.target);
+          const data = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+          };
+
+          const response = await fetch("/send-email", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (response.ok) {
+            alert("Email enviado com sucesso!");
+            nameInput.value = "";
+            emailInput.value = "";
+            history.back();
+          } else {
+            alert("Houve um erro ao enviar o email.");
+          }
+        });
+    </script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
