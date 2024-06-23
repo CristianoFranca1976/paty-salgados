@@ -19,9 +19,7 @@ app.use(express.static('public'));
 app.get('/', (req, res) => { 
   res.render('home');
 });
-app.get('/email', (req, res) => { 
-  res.render('email');
-});
+
 
 app.post('/send-email', async (req, res) => {
   const { name, email } = req.body;
