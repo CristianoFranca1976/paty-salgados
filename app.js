@@ -13,6 +13,29 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyASMX986dOJS4oV7-MUIU2Y3Q3F5CY7Ftk",
+  authDomain: "salgados-paty.firebaseapp.com",
+  projectId: "salgados-paty",
+  storageBucket: "salgados-paty.appspot.com",
+  messagingSenderId: "510459379412",
+  appId: "1:510459379412:web:b679b7575bd1ea2acf8541",
+  measurementId: "G-2VV7GRHXBH"
+};
+
+// Initialize Firebase
+const app1 = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app1);
+
+
 const items = [
   {
     name: "Coxinha",
@@ -208,4 +231,6 @@ app.listen(port, (err) => {
   }
   console.log(`The server is running port: http://localhost:${port}`);
 });
+
+
 
